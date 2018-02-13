@@ -16,7 +16,7 @@ class CheckLogin
     public function handle(Request $request, Closure $next)
     {
         if ($request->session()->get('logged_in') == false || $request->session()->get('logged_in') == '') {
-            return redirect('/');
+            return redirect('/sso');
         }
 
         return $next($request);

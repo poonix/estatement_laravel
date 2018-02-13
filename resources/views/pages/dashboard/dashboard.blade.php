@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
-@section('title','dashboard')
-
+@section('title','Dashboard')
+@section('main_title','Dashboard')
 @section('contents')
 
 <div class="callout callout-info">

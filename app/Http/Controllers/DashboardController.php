@@ -10,19 +10,22 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Rest\CollectionCallController;
 
 class DashboardController extends Controller
 {
 	
-	public function __construct()
+	public function __construct(CollectionCallController $print)
 	{
 		$this->middleware('checklogin');
+	 	$this->getAPICol = $print;
 	}
 
-	public function dashboard(Request $request)
+
+	public function dashboard()
 	{
-		$value = $request->session()->get('nama');
-		return view('pages/dashboard/dashboard',['name'=>$value]);
+		//getDataAPICollection
+		//echo $this->getAPICol->GetList();
+		return view('pages/dashboard/index')->with('APICol',json_decode($this->getAPICol->GetList(),true));
 	}
 }

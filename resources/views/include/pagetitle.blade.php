@@ -1,6 +1,3 @@
-@extends('layout.layout')
 
-@section('pagetitle')
-          Top Navigation
-          <small>Example 2.0</small>
-@stop
+@yield('main_title')
+<small>@yield('sub_title')</small>

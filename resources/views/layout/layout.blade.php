@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  @yield('head')
+ @include('include.head')
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
 <div class="wrapper">
 
   <header class="main-header">
-      @yield('header')
+      @include('include.header')
   </header>
   <!-- Full Width Column -->
   <div class="content-wrapper">
@@ -16,7 +16,7 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          @yield('pagetitle')
+          @include('include.pagetitle')
         </h1>
         <ol class="breadcrumb">
             @yield('breadcrumb')
@@ -33,11 +33,11 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    @yield('footer')
+    @include('include.footer')
   </footer>
 </div>
 <!-- ./wrapper -->
 
-@yield('scripts')
+@include('include.scripts')
 </body>
 </html>

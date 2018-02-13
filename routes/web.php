@@ -14,12 +14,11 @@
 Route::get('/', function () {
     return view('welcome',['name'=>'yudhi']);
 });*/
-
-Route::redirect('/', 'http://103.76.17.197/SSO_WebService/login.php?source=http://localhost/estatement_laravel/public/check_user&app_code=EVENT');
+Route::redirect('/sso', 'http://103.76.17.197/SSO_WebService/login.php?source=http://localhost/estatement_laravel/public/check_user&app_code=EVENT');
 Route::get('/check_user', 'Auth\LoginController@index');
-Route::get('/dashboard', 'DashboardController@dashboard');
-
 Route::group(['middleware'=>['checklogin']],function(){
+	Route::get('/', 'DashboardController@dashboard');
 	Route::get('/dashboard','DashboardController@dashboard');
 	Route::get('/logout','UserController@logout');
+	Route::get('/col', 'CollectionCallController@GetList');
 });
