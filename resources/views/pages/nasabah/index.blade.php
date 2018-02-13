@@ -1,11 +1,13 @@
 @extends('layout.layout')
 
 @section('title','Cari Nasabah')
-@section('main_title','Cari Nasabah')
+@section('main_title')
+  {{ $IdNasabah.' / '.$NamaNasabah }}
+@endsection
 @section('sub_title','')
 @section('breadcrumb')
   <li><a href="{{ url('/dashboard') }}"><i class="fa fa-search"></i> Cari Nasabah</a></li>
-
+  <li>{{ $NamaNasabah }} </li>
 @endsection
 @section('contents')
 
@@ -82,25 +84,29 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Nasabah Id</th>
                   <th>No Rekening</th>
-                  <th>Nama Nasabah</th>
-                  <th>Nama Ibu Kandung</th>
-                  <th>Alamat</th>
-                  <th>Status</th>
-                  <th>Action</th>
+                  <th>Jumlah Pinjaman</th>
+                  <th>Jumlah Angsuran</th>
+                  <th>Angsuran Total</th>
+                  <th>Pokok Saldo Akhir</th>
+                  <th>Bunga Saldo Akhir</th>
+                  <th>Outstanding</th>
+                  <th>Status Aktif</th>
+                  <th>action</th>
                 </tr>
                 </thead>
                 <tbody>
-                   @foreach($APICol['Data'] as $student)
+                   @foreach($APICol['data'] as $student)
                   <tr>
-                    <td>{{ $student['NASABAH_ID'] }}</td>
                     <td>{{ $student['NO_REKENING'] }}</td>
-                    <td>{{ $student['NAMA_NASABAH'] }}</td>
-                    <td>{{ $student['NAMA_IBU_KANDUNG'] }}</td>
-                    <td>{{ $student['ALAMAT'] }}</td>
-                    <td>{{ $student['Status'] }}</td>
-                    <td><a href="{{ url('/nasabah/'.$student['NASABAH_ID'].'/'.str_replace(' ','_',$student['NAMA_NASABAH'])) }}" class="btn btn-default">View</a></td>
+                    <td>Rp. {{ number_format($student['JML_PINJAMAN'],0) }}</td>
+                    <td>{{ $student['JML_ANGSURAN'] }}</td>
+                    <td>Rp. {{ number_format($student['angsuran_total'],0) }}</td>
+                    <td>Rp. {{ number_format($student['POKOK_SALDO_AKHIR'],0) }}</td>
+                    <td>Rp. {{ number_format($student['BUNGA_SALDO_AKHIR'],0) }}</td>
+                    <td>Rp. {{ number_format($student['OUTSTANDING'],0) }}</td>
+                    <td>{{ $student['STATUS_AKTIF'] }}</td>
+                    <td><button class="btn btn-default">View</button></td>
                   </tr>
                 @endforeach
          

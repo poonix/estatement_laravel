@@ -63,4 +63,29 @@ class CollectionCallController extends Controller
 		dd($response->getBody()->getContents());
 		*/
 	}
+
+	public function GetListDataPembiayaan($id)
+	{
+		//create an instance of Client wiht base url of the API
+		$clientA = new Client(['base_uri' => ParameterAPI::$APIPembiayaan]);
+
+		// Send a GET request to http:127.0.0.1/path/to/api/ 
+		// and method name is apiName 
+		// with api authentication (username and password)
+		/*
+		$response = $client->request('GET', 'apiName', [
+		                 'auth' => ['username', 'password']
+		                 ]);
+		*/
+		// check the response by
+		$response = $clientA->request('GET', NameAPI::$GetListDataPembiayaan.$id);  
+		$status =  $response->getStatusCode(); 
+		if($status == 200)
+		{
+			$buffer =  $response->getBody()->getContents(); 	
+			return $buffer;
+		}else {
+			return 'error_api';
+		}   
+	}
 }
