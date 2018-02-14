@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome',['name'=>'yudhi']);
 });*/
-Route::redirect('/sso', 'http://103.76.17.197/SSO_WebService/login.php?source=http://azha.ddns.net:8080/estatement/public/check_user&app_code=EVENT');
+Route::redirect('/sso', 'http://103.76.17.197/SSO_WebService/login.php?source=http://azha.ddns.net:8080/estatement/check_user&app_code=EVENT');
 Route::get('/check_user', 'Auth\LoginController@index');
 Route::group(['middleware'=>['checklogin']],function(){
 	Route::get('/', 'DashboardController@dashboard');
