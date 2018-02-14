@@ -10,8 +10,8 @@ namespace App\Http\Controllers\Rest;
 
 
 use App\Http\Controllers\Controller;
-use App\Http\ParameterAPI;
-use App\Http\NameAPI;
+use App\Config\ParameterAPI;
+use App\Config\NameAPI;
 
 use GuzzleHttp\Client;
 
@@ -47,21 +47,6 @@ class CollectionCallController extends Controller
 		}else {
 			return 'error_api';
 		}   
-		/*                 	
-		dd($response);
-
-		// Get the response status code
-		dd($response->getStatusCode());
-		// Get the response phase
-		dd($response->getReasonPhrase());
-		// Get all/full header
-		dd($response->getHeaders());
-		// Get specific specific entity of header, 
-		// here we retrive content-type
-		dd($response->getHeader('content-type'));
-		// Get api content. it return the main content the we need
-		dd($response->getBody()->getContents());
-		*/
 	}
 
 	public function GetListDataPembiayaan($id)
