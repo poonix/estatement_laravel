@@ -31,6 +31,14 @@ class NasabahController extends Controller
 				->with('IdNasabah',str_replace('_',' ', $id))
 				->with('NamaNasabah',str_replace('_',' ', $nama))
 				->with('APICol',json_decode($this->getAPICol->GetListDataPembiayaan($id),true));
+	}
 
+	public function detail_jadwal($id,$nama,$rekening)
+	{
+		return view('pages/nasabah/detailRekening')
+				->with('IdNasabah',str_replace('_',' ', $id))
+				->with('NamaNasabah',str_replace('_',' ', $nama))
+				->with('Rekening',str_replace('_',' ', $rekening))
+				->with('APICol',json_decode($this->getAPICol->getJadwalAngsuran($rekening),true));
 	}
 }

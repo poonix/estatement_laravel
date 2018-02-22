@@ -84,7 +84,8 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>No Rekening</th>
+                  <th>Nama Unit</th>
+                  <th>Nama Cabang</th>
                   <th>Jumlah Pinjaman</th>
                   <th>Jumlah Angsuran</th>
                   <th>Angsuran Total</th>
@@ -98,6 +99,8 @@
                 <tbody>
                    @foreach($APICol['data'] as $student)
                   <tr>
+                    <td>{{ $student['NAMA_UNIT'] }}</td>
+                    <td>{{ $student['NAMA_CABANG'] }}</td>
                     <td>{{ $student['NO_REKENING'] }}</td>
                     <td>Rp. {{ number_format($student['JML_PINJAMAN'],0) }}</td>
                     <td>{{ $student['JML_ANGSURAN'] }}</td>
@@ -105,8 +108,16 @@
                     <td>Rp. {{ number_format($student['POKOK_SALDO_AKHIR'],0) }}</td>
                     <td>Rp. {{ number_format($student['BUNGA_SALDO_AKHIR'],0) }}</td>
                     <td>Rp. {{ number_format($student['OUTSTANDING'],0) }}</td>
-                    <td>{{ $student['STATUS_AKTIF'] }}</td>
-                    <td><button class="btn btn-default">View</button></td>
+                    <td>
+                    @if ( $student['STATUS_AKTIF']  == 2)
+                    Aktif
+                    @elseif( $student['STATUS_AKTIF'] == 3)
+                    Baru Selesai
+                    @else
+                    baru
+                    @endif
+                    </td>
+                    <td><a href="{{ url('/nasabah/detail_jadwal/'.$student['NASABAH_ID'].'/'.str_replace(' ','_',$NamaNasabah).'/'.$student['NO_REKENING']) }}" class="btn btn-default">View</a></td>
                   </tr>
                 @endforeach
          

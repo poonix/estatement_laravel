@@ -1,11 +1,15 @@
 @extends('layout.layout')
 
-@section('title','Cari Nasabah')
-@section('main_title','Cari Nasabah')
+@section('title','Detail Rekening')
+@section('main_title')
+  Jadwal Angsuran
+@endsection
 @section('sub_title','')
 @section('breadcrumb')
   <li><a href="{{ url('/dashboard') }}"><i class="fa fa-search"></i> Cari Nasabah</a></li>
-
+  <li>{{ $NamaNasabah }} </li>
+  <li>Jadwal Angsuran </li>
+  <li>{{ $Rekening }} </li>
 @endsection
 @section('contents')
 
@@ -13,6 +17,40 @@
         <div class="col-xs-12">
           <!-- general form elements -->
           <div class="box box-primary">
+              <div class="row">
+                <div class="col-sm-3">
+                    <div class="box-body">
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Nama Nasabah</label>
+                            <p>{{ $NamaNasabah }}</p>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="box-body">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Rekening</label>
+                        <p>{{ $Rekening }}</p>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="box-body">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Kode Unit</label>
+                        <p>{{ $Rekening }}</p>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="box-body">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">ID Cabang</label>
+                        <p>{{ $Rekening }}</p>
+                      </div>
+                  </div>
+                </div>
+              </div>
             <!-- /.box-header -->
             <!-- form start -->
               <!--
@@ -82,27 +120,25 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Nasabah Id</th>
-                  <th>No Rekening</th>
-                  <th>Nama Nasabah</th>
-                  <th>Nama Ibu Kandung</th>
-                  <th>Alamat</th>
-                  <th>Action</th>
+                  <th>Tanggal Transaksi</th>
+                  <th>Angsuran Ke</th>
+                  <th>Pokok Transaksi</th>
+                  <th>Bunga Transaksi</th>
+                  <th>Total Angsuran</th>
+                  <th>action</th>
                 </tr>
                 </thead>
                 <tbody>
-                   @foreach($APICol['Data'] as $student)
+                   @foreach($APICol['data'] as $student)
                   <tr>
-                    <td>{{ $student['NASABAH_ID'] }}</td>
-                    <td>{{ $student['NO_REKENING'] }}</td>
-                    <td>{{ $student['NAMA_NASABAH'] }}</td>
-                    <td>{{ $student['NAMA_IBU_KANDUNG'] }}</td>
-                    <td>{{ $student['ALAMAT'] }}</td>
-                    <td><a href="{{ url('/nasabah/'.$student['NASABAH_ID'].'/'.str_replace(' ','_',$student['NAMA_NASABAH'])) }}" class="btn btn-default">View</a></td>
+                    <td>{{ $student['TGL_TRANS']['date'] }}</td>
+                    <td>{{ $student['ANGSURAN_KE'] }}</td>
+                    <td>Rp. {{ number_format($student['POKOK_TRANS'],0) }}</td>
+                    <td>Rp. {{ number_format($student['BUNGA_TRANS'],0) }}</td>
+                    <td>Rp. {{ number_format($student['TOTAL_ANGSURAN'],0) }}</td>
+                    <td><a href="#"><i class="fa fa-file-pdf-o"></i></a></td>
                   </tr>
                 @endforeach
-         
-
                 </tbody>
               </table>
             </div>
